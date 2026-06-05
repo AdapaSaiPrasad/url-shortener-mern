@@ -24,16 +24,16 @@ function App() {
   }
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/url",
-        {
-          originalUrl: url,
-        }
-      );
+  `${import.meta.env.VITE_API_URL}/api/url`,
+  {
+    originalUrl: url,
+  }
+);
 
       const shortCode = response.data.data.shortCode;
 
       setShortUrl(
-        `http://localhost:5000/api/url/${shortCode}`
+        `${import.meta.env.VITE_API_URL}/${shortCode}`
       );
       console.log("Clearing input");
       setUrl("");
