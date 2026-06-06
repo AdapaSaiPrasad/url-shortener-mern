@@ -1,19 +1,25 @@
-const express=require("express");
-const cors=require("cors");
-const helmet=require("helmet");
-const morgan=require("morgan");
-const urlRoutes=require("./routes/url.routes");
-const app=express()
+const express = require("express");
+const cors = require("cors");
+const helmet = require("helmet");
+const morgan = require("morgan");
 
-app.use(express.json())
-app.use(cors())
-app.use(helmet())
-app.use(morgan("dev"))
+const urlRoutes = require("./routes/url.routes");
 
-app.get("/",(req,res)=>{
-    res.send("URL Shprtener API running");
+const app = express();
 
-})
-app.use("/api/url",urlRoutes);
+app.use(express.json());
+app.use(cors());
+app.use(helmet());
+app.use(morgan("dev"));
 
-module.exports=app
+app.get("/", (req, res) => {
+  res.send("URL Shortener API running");
+});
+
+// API routes
+app.use("/api/url", urlRoutes);
+
+// Redirect routes
+app.use("/", urlRoutes);
+
+module.exports = app;
