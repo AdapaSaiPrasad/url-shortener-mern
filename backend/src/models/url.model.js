@@ -1,4 +1,4 @@
-const mongoose=require('mongoose');
+import mongoose, { isObjectIdOrHexString } from "mongoose"
 
 const urlSchema=new mongoose.Schema(
     {
@@ -16,9 +16,16 @@ const urlSchema=new mongoose.Schema(
             type:Number,
             default:0
         }
+        ,
+        user:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"User"
+        }
         
 
     },
     {timestamps:true}
-)
-module.exports=mongoose.model("Url",urlSchema)
+);
+const Url=mongoose.model("Url",urlSchema);
+
+export default Url;

@@ -1,9 +1,9 @@
-const express = require("express");
-const cors = require("cors");
-const helmet = require("helmet");
-const morgan = require("morgan");
+import express from "express";
+import cors from "cors";
+import helmet from "helmet";
+import morgan from "morgan";
 
-const urlRoutes = require("./routes/url.routes");
+import urlRoutes from "./routes/url.routes.js";
 
 const app = express();
 
@@ -22,4 +22,4 @@ app.use("/api/url", urlRoutes);
 // Redirect routes
 app.use("/", urlRoutes);
 
-module.exports = app;
+export default app;
